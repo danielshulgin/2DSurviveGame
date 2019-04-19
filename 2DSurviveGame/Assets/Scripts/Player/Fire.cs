@@ -21,7 +21,7 @@ public class Fire : MonoBehaviour
         playerMeneger.inventory.items.Find(item => item.itemType == ItemType.bullet).number -= 1;
         GameObject bullet = SimplePool.Spawn(bulletPref, muzzleTransform.position, muzzleTransform.rotation);
         BulletControl bulletControl = bullet.GetComponent<BulletControl>();
-        bulletControl.shotStartDirection = transform.rotation.eulerAngles;
-        bulletControl.on = true;
+        
+        bullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(transform.up.x, transform.up.y) * bulletControl.speed);
     }
 }

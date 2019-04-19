@@ -23,8 +23,9 @@ public class FisicEngine : MonoBehaviour
     }
 
     public void Rotate(Vector2 direction)
-    { 
-        var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        playerHeadTransform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    {
+        direction.Normalize();
+        float rot_z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        playerHeadTransform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
     }
 }
