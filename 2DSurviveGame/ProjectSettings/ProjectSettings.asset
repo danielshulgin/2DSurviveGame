@@ -610,6 +610,6 @@ PlayerSettings:
   projectName: 2DSurviveGame
   organizationId: unity_snho9byta2mtpa
   cloudEnabled: 0
-  enableNativePlatformBackendsForNewInputSystem: 0
+  enableNativePlatformBackendsForNewInputSystem: 1
   disableOldInputManagerSupport: 0
   legacyClampBlendShapeWeights: 1

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum ItemType
 {
-    none, bullet
+    None, Bullet
 }
 
 public class Inventory
@@ -14,12 +14,40 @@ public class Inventory
 
 public class Item
 {
-    public ItemType itemType = ItemType.none;
-    public int number = 0;
+    public ItemType itemType;
+    public int number;
 
-    public Item(ItemType itemType, int number)
+    public Item(ItemType itemType, int number = 1)
     {
         this.itemType = itemType;
         this.number = number;
     }
+
+    public bool Use(int n = 1)
+    {
+        if (CanUse(n))
+        {
+            number -= n;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool CanUse(int n = 1)
+    {
+        return number - n > 0;
+    }
 }
+
+//TODO
+//public class Bullet : Item
+//{
+//    public Bullet(ItemType itemType, int number = 1) : base(itemType, number)
+//    {
+//        this.itemType = itemType;
+//        this.number = number; 
+//    }
+//}
