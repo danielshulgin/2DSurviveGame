@@ -31,17 +31,6 @@ public class InputManager : IInputActionCollection
                     ""bindings"": []
                 },
                 {
-                    ""name"": ""Shoot"",
-                    ""id"": ""00678567-88cb-4b26-9bb6-4de8d6a28a55"",
-                    ""expectedControlLayout"": """",
-                    ""continuous"": false,
-                    ""passThrough"": false,
-                    ""initialStateCheck"": false,
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""bindings"": []
-                },
-                {
                     ""name"": ""Direction"",
                     ""id"": ""5e2186d8-2ee6-4ed7-9af6-f286aa430082"",
                     ""expectedControlLayout"": """",
@@ -138,18 +127,6 @@ public class InputManager : IInputActionCollection
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b393eacf-40cb-4d9e-9dea-d100cbfbdcdb"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";PC"",
-                    ""action"": ""Shoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false,
-                    ""modifiers"": """"
-                },
-                {
-                    ""name"": """",
                     ""id"": ""d639a126-a87f-44b3-9063-9d6457e9caf3"",
                     ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
@@ -210,7 +187,6 @@ public class InputManager : IInputActionCollection
         // Player
         m_Player = asset.GetActionMap("Player");
         m_Player_Move = m_Player.GetAction("Move");
-        m_Player_Shoot = m_Player.GetAction("Shoot");
         m_Player_Direction = m_Player.GetAction("Direction");
         m_Player_StartShoot = m_Player.GetAction("StartShoot");
         m_Player_EndShoot = m_Player.GetAction("EndShoot");
@@ -257,7 +233,6 @@ public class InputManager : IInputActionCollection
     private InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private InputAction m_Player_Move;
-    private InputAction m_Player_Shoot;
     private InputAction m_Player_Direction;
     private InputAction m_Player_StartShoot;
     private InputAction m_Player_EndShoot;
@@ -266,7 +241,6 @@ public class InputManager : IInputActionCollection
         private InputManager m_Wrapper;
         public PlayerActions(InputManager wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move { get { return m_Wrapper.m_Player_Move; } }
-        public InputAction @Shoot { get { return m_Wrapper.m_Player_Shoot; } }
         public InputAction @Direction { get { return m_Wrapper.m_Player_Direction; } }
         public InputAction @StartShoot { get { return m_Wrapper.m_Player_StartShoot; } }
         public InputAction @EndShoot { get { return m_Wrapper.m_Player_EndShoot; } }
@@ -283,9 +257,6 @@ public class InputManager : IInputActionCollection
                 Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                 Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                 Move.cancelled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                Shoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
-                Shoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
-                Shoot.cancelled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
                 Direction.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDirection;
                 Direction.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDirection;
                 Direction.cancelled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDirection;
@@ -302,9 +273,6 @@ public class InputManager : IInputActionCollection
                 Move.started += instance.OnMove;
                 Move.performed += instance.OnMove;
                 Move.cancelled += instance.OnMove;
-                Shoot.started += instance.OnShoot;
-                Shoot.performed += instance.OnShoot;
-                Shoot.cancelled += instance.OnShoot;
                 Direction.started += instance.OnDirection;
                 Direction.performed += instance.OnDirection;
                 Direction.cancelled += instance.OnDirection;
@@ -336,7 +304,6 @@ public class InputManager : IInputActionCollection
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnShoot(InputAction.CallbackContext context);
         void OnDirection(InputAction.CallbackContext context);
         void OnStartShoot(InputAction.CallbackContext context);
         void OnEndShoot(InputAction.CallbackContext context);

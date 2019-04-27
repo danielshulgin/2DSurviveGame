@@ -23,22 +23,18 @@ public class Fire : MonoBehaviour
 
     private void OnEnable()
     {
-        input.Player.Shoot.performed += context => Shoot();
         input.Player.StartShoot.performed += context => StartShooting();
         input.Player.EndShoot.performed += context => StopShooting();
         input.Player.StartShoot.Enable();
         input.Player.EndShoot.Enable();
-        input.Player.Shoot.Enable();
     }
 
     private void OnDisable()
     {
-        input.Player.Shoot.performed -= ccontext => Shoot();
         input.Player.StartShoot.performed -= context => StartShooting();
         input.Player.EndShoot.performed -= context => StopShooting();
         input.Player.StartShoot.Disable();
         input.Player.EndShoot.Disable();
-        input.Player.Shoot.Disable();
     }
 
     public bool OneShoot()

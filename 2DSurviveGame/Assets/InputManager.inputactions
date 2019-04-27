@@ -17,17 +17,6 @@
                     "bindings": []
                 },
                 {
-                    "name": "Shoot",
-                    "id": "00678567-88cb-4b26-9bb6-4de8d6a28a55",
-                    "expectedControlLayout": "",
-                    "continuous": false,
-                    "passThrough": false,
-                    "initialStateCheck": false,
-                    "processors": "",
-                    "interactions": "",
-                    "bindings": []
-                },
-                {
                     "name": "Direction",
                     "id": "5e2186d8-2ee6-4ed7-9af6-f286aa430082",
                     "expectedControlLayout": "",
@@ -120,18 +109,6 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true,
-                    "modifiers": ""
-                },
-                {
-                    "name": "",
-                    "id": "b393eacf-40cb-4d9e-9dea-d100cbfbdcdb",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";PC",
-                    "action": "Shoot",
-                    "isComposite": false,
-                    "isPartOfComposite": false,
                     "modifiers": ""
                 },
                 {
