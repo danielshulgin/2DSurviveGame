@@ -518,7 +518,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!4 &1302826386
 Transform:
   m_ObjectHideFlags: 0
@@ -546,41 +546,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb6d98956326abf4792ebbcf8cb43696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputSystem: {fileID: 1463969091}
   playerHeadTransform: {fileID: 1874712848}
-  input:
-    m_Asset: {fileID: -944628639613478452, guid: 6aa37113f65a86e40a4db28465df656a,
-      type: 3}
-    m_PlayerMoveActionStarted:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: InputManager+ActionEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-    m_PlayerMoveActionPerformed:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: InputManager+ActionEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-    m_PlayerMoveActionCancelled:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: InputManager+ActionEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-    m_PlayerShootActionStarted:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: InputManager+ActionEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-    m_PlayerShootActionPerformed:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: InputManager+ActionEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-    m_PlayerShootActionCancelled:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: InputManager+ActionEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
+  speed: 2
 --- !u!1 &1389516454
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,7 +587,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1463969093}
-  - component: {fileID: 1463969091}
   - component: {fileID: 1463969090}
   m_Layer: 0
   m_Name: GameMeneger
@@ -641,19 +607,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99bd4a4b5e996c4dad2d7d95e6b07c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1463969091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1463969089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4d2805274fbe18469406159fb09e1b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTransform: {fileID: 1302826386}
 --- !u!4 &1463969093
 Transform:
   m_ObjectHideFlags: 0
@@ -765,37 +718,3 @@ MonoBehaviour:
   bulletPref: {fileID: 9046260917184258298, guid: 53410e3f588043047a31d22cf0ee2867,
     type: 3}
   muzzleTransform: {fileID: 729255484}
-  inputSystem: {fileID: 1463969091}
-  input:
-    m_Asset: {fileID: -944628639613478452, guid: 6aa37113f65a86e40a4db28465df656a,
-      type: 3}
-    m_PlayerMoveActionStarted:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: InputManager+ActionEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-    m_PlayerMoveActionPerformed:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: InputManager+ActionEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-    m_PlayerMoveActionCancelled:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: InputManager+ActionEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-    m_PlayerShootActionStarted:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: InputManager+ActionEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-    m_PlayerShootActionPerformed:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: InputManager+ActionEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-    m_PlayerShootActionCancelled:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: InputManager+ActionEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
