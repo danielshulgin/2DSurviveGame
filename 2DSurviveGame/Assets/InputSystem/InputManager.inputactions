@@ -37,17 +37,6 @@
                     "processors": "",
                     "interactions": "",
                     "bindings": []
-                },
-                {
-                    "name": "EndShoot",
-                    "id": "f114e12a-4ee5-45eb-b420-3d3099256629",
-                    "expectedControlLayout": "",
-                    "continuous": false,
-                    "passThrough": false,
-                    "initialStateCheck": false,
-                    "processors": "",
-                    "interactions": "",
-                    "bindings": []
                 }
             ],
             "bindings": [
@@ -119,18 +108,6 @@
                     "processors": "",
                     "groups": ";PC",
                     "action": "Direction",
-                    "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
-                },
-                {
-                    "name": "",
-                    "id": "9616a509-bbf5-46dd-b57e-5e5d8492b89d",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "Press(behavior=1)",
-                    "processors": "",
-                    "groups": ";PC",
-                    "action": "EndShoot",
                     "isComposite": false,
                     "isPartOfComposite": false,
                     "modifiers": ""

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Input;
@@ -10,12 +11,16 @@ public class PlayerPhysicsEngine : MonoBehaviour
     public InputManager input;
 
     public float speed = 2f;
+    Action<InputAction.CallbackContext> moveHandler;
+    Action<InputAction.CallbackContext> directiontHandler;
 
     void Awake()
     {
-        input = new InputManager();
-        input.Player.Move.performed += context => Move(context.ReadValue<Vector2>());
-        input.Player.Direction.performed += context => Rotate(context.ReadValue<Vector2>());
+        input = FlowController.input;
+        moveHandler = context => Move(context.ReadValue<Vector2>());
+        directiontHandler = context => Rotate(context.ReadValue<Vector2>());
+        input.Player.Move.performed += moveHandler;
+        input.Player.Direction.performed += directiontHandler;
     }
 
     private void OnEnable()
@@ -25,7 +30,11 @@ public class PlayerPhysicsEngine : MonoBehaviour
 
     private void OnDisable()
     {
-        input.Disable();
+        input.Player.Move.performed -= moveHandler;
+        input.Player.Direction.performed -= directiontHandler;
+        input.Player.Move.Disable();
+        input.Player.Direction.Disable();
+
     }
 
     public void Move(Vector2 direction)

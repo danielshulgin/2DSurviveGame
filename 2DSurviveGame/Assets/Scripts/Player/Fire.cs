@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Input; 
@@ -11,15 +12,17 @@ public class Fire : MonoBehaviour
     GameObject bulletPref = null;
     [SerializeField]
     Transform muzzleTransform = null;
-    Coroutine shootingRoutine;
+    Coroutine shootRoutine;
+    //TODO state
     public bool Shooting { get; private set; }
-
     public InputManager input;
+
+    Action<InputAction.CallbackContext> shootHandler;
 
     private void Awake()
     {
-        input = new InputManager();
-        input.Player.Shoot.performed += context =>
+        input = FlowController.input;
+        shootHandler = context =>
         {
             if (context.ReadValue<float>() >= 0.9f)
             {
@@ -30,6 +33,7 @@ public class Fire : MonoBehaviour
                 StopShooting();
             }
         };
+        input.Player.Shoot.performed += shootHandler;
     }
 
     private void OnEnable()
@@ -39,7 +43,8 @@ public class Fire : MonoBehaviour
 
     private void OnDisable()
     {
-        input.Disable();
+        input.Player.Shoot.performed -= shootHandler;
+        input.Player.Shoot.Disable();
     }
 
     public bool OneShoot()
@@ -56,13 +61,13 @@ public class Fire : MonoBehaviour
     public void StartShooting()
     {
         Shooting = true;
-        shootingRoutine = StartCoroutine(Shoot());
+        if(shootRoutine == null)
+            shootRoutine = StartCoroutine(Shoot());
     }
 
     public void StopShooting()
     {
         Shooting = false;
-        StopCoroutine(shootingRoutine);
     }
 
     IEnumerator Shoot()
@@ -75,7 +80,11 @@ public class Fire : MonoBehaviour
                 break;
             }
             yield return new WaitForSeconds(.5f);
-
+            if (Shooting == false)
+            {
+                shootRoutine = null;
+                break;
+            }
         }
     }
 }
