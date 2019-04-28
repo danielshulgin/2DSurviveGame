@@ -19,22 +19,27 @@ public class Fire : MonoBehaviour
     private void Awake()
     {
         input = new InputManager();
+        input.Player.Shoot.performed += context =>
+        {
+            if (context.ReadValue<float>() >= 0.9f)
+            {
+                StartShooting();
+            }
+            else
+            {
+                StopShooting();
+            }
+        };
     }
 
     private void OnEnable()
     {
-        input.Player.StartShoot.performed += context => StartShooting();
-        input.Player.EndShoot.performed += context => StopShooting();
-        input.Player.StartShoot.Enable();
-        input.Player.EndShoot.Enable();
+        input.Enable();
     }
 
     private void OnDisable()
     {
-        input.Player.StartShoot.performed -= context => StartShooting();
-        input.Player.EndShoot.performed -= context => StopShooting();
-        input.Player.StartShoot.Disable();
-        input.Player.EndShoot.Disable();
+        input.Disable();
     }
 
     public bool OneShoot()
@@ -43,7 +48,6 @@ public class Fire : MonoBehaviour
         if (item != null && item.Use())
         {
             GameObject bullet = Instantiate(bulletPref, muzzleTransform.position, muzzleTransform.rotation);
-            BulletControl bulletControl = bullet.GetComponent<BulletControl>();
             return true;
         }
         return false;

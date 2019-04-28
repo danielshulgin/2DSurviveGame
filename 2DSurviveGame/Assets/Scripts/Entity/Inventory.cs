@@ -47,7 +47,6 @@ public class Item
 //{
 //    public Bullet(ItemType itemType, int number = 1) : base(itemType, number)
 //    {
-//        this.itemType = itemType;
-//        this.number = number; 
+//
 //    }
 //}

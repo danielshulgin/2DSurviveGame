@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Input;
 
-public class FisicEngine : MonoBehaviour
+public class PlayerPhysicsEngine : MonoBehaviour
 {
     [SerializeField]
     Transform playerHeadTransform = null;
@@ -14,22 +14,18 @@ public class FisicEngine : MonoBehaviour
     void Awake()
     {
         input = new InputManager();
+        input.Player.Move.performed += context => Move(context.ReadValue<Vector2>());
+        input.Player.Direction.performed += context => Rotate(context.ReadValue<Vector2>());
     }
 
     private void OnEnable()
     {
-        input.Player.Move.performed += context => Move(context.ReadValue<Vector2>());
-        input.Player.Direction.performed += context => Rotate(context.ReadValue<Vector2>());
-        input.Player.Move.Enable();
-        input.Player.Direction.Enable();
+        input.Enable();
     }
 
     private void OnDisable()
     {
-        input.Player.Move.performed -= context => Move(context.ReadValue<Vector2>());
-        input.Player.Direction.performed -= context => Rotate(context.ReadValue<Vector2>());
-        input.Player.Move.Disable();
-        input.Player.Direction.Disable();
+        input.Disable();
     }
 
     public void Move(Vector2 direction)

@@ -20,7 +20,7 @@
                     "name": "Direction",
                     "id": "5e2186d8-2ee6-4ed7-9af6-f286aa430082",
                     "expectedControlLayout": "",
-                    "continuous": false,
+                    "continuous": true,
                     "passThrough": false,
                     "initialStateCheck": false,
                     "processors": "",
@@ -28,9 +28,9 @@
                     "bindings": []
                 },
                 {
-                    "name": "StartShoot",
+                    "name": "Shoot",
                     "id": "f363f89f-f578-42cf-8af7-45fdfb6f0458",
-                    "expectedControlLayout": "",
+                    "expectedControlLayout": "Axis",
                     "continuous": false,
                     "passThrough": false,
                     "initialStateCheck": false,
@@ -125,24 +125,24 @@
                 },
                 {
                     "name": "",
-                    "id": "d4a40baa-ac21-457f-9c8e-78e809aef5f1",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": ";PC",
-                    "action": "StartShoot",
-                    "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
-                },
-                {
-                    "name": "",
                     "id": "9616a509-bbf5-46dd-b57e-5e5d8492b89d",
                     "path": "<Mouse>/leftButton",
                     "interactions": "Press(behavior=1)",
                     "processors": "",
                     "groups": ";PC",
                     "action": "EndShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "",
+                    "id": "41cd1424-d708-4e07-8cad-d00be966e880",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": ";PC",
+                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false,
                     "modifiers": ""

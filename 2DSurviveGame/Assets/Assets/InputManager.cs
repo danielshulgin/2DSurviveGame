@@ -34,7 +34,7 @@ public class InputManager : IInputActionCollection
                     ""name"": ""Direction"",
                     ""id"": ""5e2186d8-2ee6-4ed7-9af6-f286aa430082"",
                     ""expectedControlLayout"": """",
-                    ""continuous"": false,
+                    ""continuous"": true,
                     ""passThrough"": false,
                     ""initialStateCheck"": false,
                     ""processors"": """",
@@ -42,9 +42,9 @@ public class InputManager : IInputActionCollection
                     ""bindings"": []
                 },
                 {
-                    ""name"": ""StartShoot"",
+                    ""name"": ""Shoot"",
                     ""id"": ""f363f89f-f578-42cf-8af7-45fdfb6f0458"",
-                    ""expectedControlLayout"": """",
+                    ""expectedControlLayout"": ""Axis"",
                     ""continuous"": false,
                     ""passThrough"": false,
                     ""initialStateCheck"": false,
@@ -139,24 +139,24 @@ public class InputManager : IInputActionCollection
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d4a40baa-ac21-457f-9c8e-78e809aef5f1"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": ""Press"",
-                    ""processors"": """",
-                    ""groups"": "";PC"",
-                    ""action"": ""StartShoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false,
-                    ""modifiers"": """"
-                },
-                {
-                    ""name"": """",
                     ""id"": ""9616a509-bbf5-46dd-b57e-5e5d8492b89d"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": ""Press(behavior=1)"",
                     ""processors"": """",
                     ""groups"": "";PC"",
                     ""action"": ""EndShoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false,
+                    ""modifiers"": """"
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""41cd1424-d708-4e07-8cad-d00be966e880"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": "";PC"",
+                    ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false,
                     ""modifiers"": """"
@@ -188,7 +188,7 @@ public class InputManager : IInputActionCollection
         m_Player = asset.GetActionMap("Player");
         m_Player_Move = m_Player.GetAction("Move");
         m_Player_Direction = m_Player.GetAction("Direction");
-        m_Player_StartShoot = m_Player.GetAction("StartShoot");
+        m_Player_Shoot = m_Player.GetAction("Shoot");
         m_Player_EndShoot = m_Player.GetAction("EndShoot");
     }
     ~InputManager()
@@ -234,7 +234,7 @@ public class InputManager : IInputActionCollection
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private InputAction m_Player_Move;
     private InputAction m_Player_Direction;
-    private InputAction m_Player_StartShoot;
+    private InputAction m_Player_Shoot;
     private InputAction m_Player_EndShoot;
     public struct PlayerActions
     {
@@ -242,7 +242,7 @@ public class InputManager : IInputActionCollection
         public PlayerActions(InputManager wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move { get { return m_Wrapper.m_Player_Move; } }
         public InputAction @Direction { get { return m_Wrapper.m_Player_Direction; } }
-        public InputAction @StartShoot { get { return m_Wrapper.m_Player_StartShoot; } }
+        public InputAction @Shoot { get { return m_Wrapper.m_Player_Shoot; } }
         public InputAction @EndShoot { get { return m_Wrapper.m_Player_EndShoot; } }
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -260,9 +260,9 @@ public class InputManager : IInputActionCollection
                 Direction.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDirection;
                 Direction.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDirection;
                 Direction.cancelled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDirection;
-                StartShoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStartShoot;
-                StartShoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStartShoot;
-                StartShoot.cancelled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStartShoot;
+                Shoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
+                Shoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
+                Shoot.cancelled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
                 EndShoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEndShoot;
                 EndShoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEndShoot;
                 EndShoot.cancelled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEndShoot;
@@ -276,9 +276,9 @@ public class InputManager : IInputActionCollection
                 Direction.started += instance.OnDirection;
                 Direction.performed += instance.OnDirection;
                 Direction.cancelled += instance.OnDirection;
-                StartShoot.started += instance.OnStartShoot;
-                StartShoot.performed += instance.OnStartShoot;
-                StartShoot.cancelled += instance.OnStartShoot;
+                Shoot.started += instance.OnShoot;
+                Shoot.performed += instance.OnShoot;
+                Shoot.cancelled += instance.OnShoot;
                 EndShoot.started += instance.OnEndShoot;
                 EndShoot.performed += instance.OnEndShoot;
                 EndShoot.cancelled += instance.OnEndShoot;
@@ -305,7 +305,7 @@ public class InputManager : IInputActionCollection
     {
         void OnMove(InputAction.CallbackContext context);
         void OnDirection(InputAction.CallbackContext context);
-        void OnStartShoot(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
         void OnEndShoot(InputAction.CallbackContext context);
     }
 }

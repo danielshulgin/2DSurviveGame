@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameMeneger : MonoBehaviour
+public class FlowController : MonoBehaviour
 {
 
 }
